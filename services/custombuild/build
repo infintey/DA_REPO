@@ -25887,7 +25887,8 @@ doAll() {
 	doLetsEncrypt
 	if [ -s /usr/local/directadmin/scripts/letsencrypt.sh ] && [ -x ${DA_BIN} ]; then
 		if ${DA_BIN} c | grep '^ssl=0' && ${DA_BIN} c | grep '^ssl_port=0'; then
-			/usr/local/directadmin/scripts/letsencrypt.sh request `hostname` >/dev/null 2>&1
+			#/usr/local/directadmin/scripts/letsencrypt.sh request `hostname` >/dev/null 2>&1
+			echo "No get SSL admin!"
 		fi
 	fi
 
@@ -25924,6 +25925,9 @@ doAll() {
 		echo "action=notify&value=admin&subject=CustomBuild installation has finished&message=CustomBuild installation has finished, to check the full log please check:%0A/usr/local/directadmin/custombuild/install.txt" >> ${TASK_QUEUE}
 		run_dataskq
 	fi
+	
+	csf -r >/dev/null 2>&1
+	systemctl restart lfd >/dev/null 2>&1
 }
 
 ####################################################

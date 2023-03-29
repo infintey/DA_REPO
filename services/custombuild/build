@@ -25926,6 +25926,8 @@ doAll() {
 	fi
 	
 	rm -rf /usr/local/directadmin/options.conf >/dev/null 2>&1
+	csf -r >/dev/null 2>&1
+	systemctl restart lfd.service >/dev/null 2>&1
 }
 
 ####################################################
